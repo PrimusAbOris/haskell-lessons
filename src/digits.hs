@@ -9,9 +9,9 @@ main = do
     let digitList = toDigits num
     putStrLn "List of digits:"
     print digitList
---    let digitListRev = toDigitsRev num
---    putStrLn "The reversed list of digits:"
---    print digitListRev
+    let digitListRev = toDigitsRev num
+    putStrLn "The reversed list of digits:"
+    print digitListRev
     putStr "Press any key to continue..."
     hFlush stdout
     void getChar  -- since IO is the method's type, it must end with an expression
@@ -22,12 +22,8 @@ toDigits n
     | n < 10    = [n]
     | otherwise = toDigits (n `div` 10) ++ [n `mod` 10]
 
-{-      cannot include in same program due to identical type declaration to toDigits
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev n
-    | n < 0     = error "Input must be a non-negative integer"
+    | n < 0     = []
     | n < 10    = [n]
-    | otherwise = reverse (toDigitsRev (n `div` 10) ++ [n `mod` 10])
--}
-
-
+    | otherwise = (n `mod` 10) : toDigitsRev (n `div` 10)
