@@ -1,7 +1,7 @@
 import System.IO
 import Control.Monad (void) -- see line 17
 
-main :: IO ()
+main :: IO () -- return type = empty result
 main = do
     putStrLn "Enter an integer:"
     input <- getLine
