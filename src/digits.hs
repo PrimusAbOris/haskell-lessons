@@ -15,6 +15,7 @@ main = do
     putStr "Press any key to continue..."
     hFlush stdout
     void getChar  -- since IO is the method's type, it must end with an expression
+    -- getChar is an input, but thanks to the ability to use a void return type (see line 2), it can be a simple pause
 
 toDigits :: Integer -> [Integer]
 toDigits n
