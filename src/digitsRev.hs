@@ -1,6 +1,6 @@
 import System.IO
 import Control.Monad (void)
-
+-- see digits.hs for info
 main :: IO ()
 main = do
     putStrLn "Enter an integer:"
@@ -13,9 +13,11 @@ main = do
     hFlush stdout
     void getChar
 
-toDigitsRev :: Integer -> [Integer]
-toDigitsRev n
-    | n < 0     = []
+toDigits :: Integer -> [Integer]
+toDigits n
+    | n < 1     = []
     | n < 10    = [n]
-    | otherwise = (n `mod` 10) : toDigitsRev (n `div` 10)
+    | otherwise = toDigits (n `div` 10) ++ [n `mod` 10]
 
+toDigitsRev :: Integer -> [Integer]
+toDigitsRev n = reverse (toDigits n)

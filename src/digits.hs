@@ -21,10 +21,7 @@ toDigits :: Integer -> [Integer]
 toDigits n
     | n < 1     = []
     | n < 10    = [n]
-    | otherwise = toDigits (n `div` 10) ++ [n `mod` 10]
+    | otherwise = toDigits (n `div` 10) ++ [n `mod` 10]  -- using div 10 and mod 10 at once recursively separates the digits
 
 toDigitsRev :: Integer -> [Integer]
-toDigitsRev n
-    | n < 0     = []
-    | n < 10    = [n]
-    | otherwise = (n `mod` 10) : toDigitsRev (n `div` 10)
+toDigitsRev n = reverse (toDigits n)

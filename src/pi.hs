@@ -16,5 +16,5 @@ main = do
 {---*--------------------------*---------------------------*---}
 {-  Right now, behind you...wasn't there something...?        -}
 {-    It's telling me about you...                            -}
-{-	You should walk away quickly and never once look back...  -}
+{-  You should walk away quickly and never once look back...  -}
 {---*--------------------------*---------------------------*---}
