@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html class="client-js ve-available" lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Merely monadic - HaskellWiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":!1,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"dfb38231ccf079a91b975ea8","wgCSPNonce":!1,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Merely_monadic","wgTitle":"Merely monadic","wgCurRevisionId":64044,"wgRevisionId":64044,"wgArticleId":10540,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Monad","Tutorials"],"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Merely_monadic","wgRelevantArticleId":10540,"wgIsProbablyEditable":!1,"wgRelevantPageIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCollapsibleVectorEnabledModules":{"collapsiblenav":
+!0,"experiments":!0},"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgEditSubmitButtonLabelPublish":!1};RLSTATE={"site.styles":"ready","noscript":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready","mediawiki.toc.styles":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready"};RLPAGEMODULES=["site","mediawiki.page.startup","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.collapsiblevector.collapsibleNav","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@1hzgi",function($,jQuery,require,module){/*@nomin*/mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+});});</script>
+<link rel="stylesheet" href="./Merely monadic - HaskellWiki_files/load.php">
+<script async="" src="./Merely monadic - HaskellWiki_files/load(1).php"></script>
+<style>
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{font-size:13px; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+@media screen {
+	.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;font-size:94%}}</style><style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style><style>
+.ve-activated .ve-init-mw-desktopArticleTarget-editableContent #toc,.ve-activated #siteNotice,.ve-activated .mw-indicators,.ve-activated #t-print,.ve-activated #t-permalink,.ve-activated #p-coll-print_export,.ve-activated #t-cite,.ve-deactivating .ve-ui-surface,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none} .ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading #content > :not(.ve-init-mw-desktopArticleTarget-loading-overlay), .ve-activated .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated #firstHeading a{ pointer-events:none}.ve-activated #catlinks{cursor:pointer}.ve-activated #catlinks a{opacity:1}.ve-activated #content{position:relative} .ve-init-mw-desktopArticleTarget-loading-overlay{position:absolute;top:1.25em;left:0;right:0;z-index:1;margin-top:-0.5em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{transition:height 250ms ease;height:0; } .oo-ui-element-hidden{display:none !important; }  .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection:before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d}  .ve-init-mw-desktopArticleTarget-toolbarPlaceholder{border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px} .ve-init-mw-desktopArticleTarget-toolbar,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{font-size:0.875em; margin:-1.14em -1.14em 1.14em -1.14em; }@media screen and (min-width:982px){ .skin-vector-legacy .ve-init-mw-desktopArticleTarget-toolbar,.skin-vector-legacy .ve-init-mw-desktopArticleTarget-toolbarPlaceholder{ margin:-1.43em -1.71em 1.43em -1.71em}}</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="./Merely monadic - HaskellWiki_files/load(2).php">
+<meta name="generator" content="MediaWiki 1.35.5">
+<link rel="shortcut icon" href="https://wiki.haskell.org/wikistatic/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://wiki.haskell.org/opensearch_desc.php" title="HaskellWiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wiki.haskell.org/api.php?action=rsd">
+<link rel="license" href="https://wiki.haskell.org/HaskellWiki:Copyrights">
+<link rel="alternate" type="application/atom+xml" title="HaskellWiki Atom feed" href="https://wiki.haskell.org/index.php?title=Special:RecentChanges&amp;feed=atom">
+<!--[if lt IE 9]><script src="/resources/lib/html5shiv/html5shiv.js"></script><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Merely_monadic rootpage-Merely_monadic skin-vector action-view skin-vector-legacy">
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice" class="mw-body-content"></div>
+	<div class="mw-indicators mw-body-content">
+	</div>
+	<h1 id="firstHeading" class="firstHeading" lang="en">Merely monadic</h1>
+	<div id="bodyContent" class="mw-body-content">
+		<div id="siteSub" class="noprint">From HaskellWiki</div>
+		<div id="contentSub"></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="https://wiki.haskell.org/Merely_monadic#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="https://wiki.haskell.org/Merely_monadic#searchInput">Jump to search</a>
+		<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div class="mw-parser-output"><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="https://wiki.haskell.org/Merely_monadic#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="https://wiki.haskell.org/Merely_monadic#Monadic_operations"><span class="tocnumber">2</span> <span class="toctext">Monadic operations</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="https://wiki.haskell.org/Merely_monadic#IO.2C_in_particular"><span class="tocnumber">2.1</span> <span class="toctext">IO, in particular</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="https://wiki.haskell.org/Merely_monadic#Using_monadic_actions"><span class="tocnumber">3</span> <span class="toctext">Using monadic actions</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="https://wiki.haskell.org/Merely_monadic#Supplemental_operations_for_monadic_types_.28non-standard_morphisms.29"><span class="tocnumber">4</span> <span class="toctext">Supplemental operations for monadic types (<i>non-standard morphisms</i>)</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="https://wiki.haskell.org/Merely_monadic#Running_monadic_actions"><span class="tocnumber">4.1</span> <span class="toctext">Running monadic actions</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>In Haskell, <i>monadic types</i> - types having an instance for the <code>Monad</code> class - can be thought of as <i>abstract descriptors</i> of <i>computations</i> which are inherently <i>composable</i> - smaller monadic expressions (<i>actions</i>) can be used to build larger ones.
+</p><p>This <i>monadic interface</i> (as specified by <code>Monad</code>) provides actions additional flexibility in separating:
+</p>
+<ul><li>the <i>time of composition</i>: when it is defined;</li></ul>
+<ul><li>the <i>time of execution</i>: when it is used;</li></ul>
+<ul><li>the <i>mode of computation</i>: what else it can do, in addition to emitting its <i>single</i> (hence the name) output value.</li></ul>
+<h2><span class="mw-headline" id="Monadic_operations">Monadic operations</span></h2>
+<p>Ideally, each monadic type in Haskell should satisfy the <i><a href="https://wiki.haskell.org/Monad_Laws" class="mw-redirect" title="Monad Laws">monad laws</a></i> by providing two basic operations:
+</p>
+<ul><li><code>return&nbsp;:: Monad m =&gt; a -&gt; m a</code>:</li></ul>
+<dl><dd><table>
+<tbody><tr>
+<td>argument
+</td>
+<td><code>:: a</code>
+</td>
+<td>another Haskell value
+</td></tr>
+<tr>
+<td>result
+</td>
+<td><code>:: m a</code>
+</td>
+<td>an action, merely <i>returning</i> the argument's value.
+</td></tr></tbody></table></dd></dl>
+<ul><li><code>(&gt;&gt;=)&nbsp;:: Monad m =&gt; m a -&gt; (a -&gt; m b) -&gt; m b</code>:</li></ul>
+<dl><dd><table>
+<tbody><tr>
+<td>argument #1
+</td>
+<td><code>:: m a</code>
+</td>
+<td>an action
+</td></tr>
+<tr>
+<td>argument #2
+</td>
+<td><code>:: (a -&gt; m b)</code>
+</td>
+<td>a suitable Haskell function (a <i>reaction</i>)
+</td></tr>
+<tr>
+<td>result
+</td>
+<td><code>:: m b</code>
+</td>
+<td><p>another action, the result of <i>binding</i> the output value of argument #1<br>
+    (the action) to the input of argument #2 (the reaction).</p>
+</td></tr></tbody></table></dd></dl>
+<p>Together, these two operations allow many of the specific (and often-repetitive) details of the computational processes used by actions to be abstracted away. This often makes the monadic interface the preferred choice for <i>abstract data types</i>, where the inner workings of monadic actions must be kept private e.g. to ensure they work as intended.
+</p><p>As a reaction uses its argument to build a new monadic result, it can be thought of as an abstract <i>constructor</i> for new actions. In this way <code>return</code> can then be seen as the trivial-action constructor for new actions: the monadic counterpart to the identity function <code>Prelude.id</code>:
+</p>
+<haskell><div class="mw-highlight mw-highlight-lang-haskell mw-content-ltr" dir="ltr"><pre><span></span><span class="nf">id</span>   <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+<span class="nf">id</span> <span class="n">x</span> <span class="ow">=</span>  <span class="n">x</span>
+</pre></div>
+<h3><span id="IO,_in_particular"></span><span class="mw-headline" id="IO.2C_in_particular"><code>IO</code>, in particular</span></h3>
+<p>The <code>IO</code> type is special because a Haskell program is one large <code>IO</code> action (usually) called <code>main</code> - for any other <code>IO</code> action to work, it should be part of the chain of I/O actions composed together to form <code>main</code>. Execution of a Haskell program then starts by the Haskell implementation calling <code>main</code>, according to the implementation's private definition of the abstract <code>IO</code> type.
+</p>
+<h2><span class="mw-headline" id="Using_monadic_actions">Using monadic actions</span></h2>
+<p>Assuming:
+</p>
+<ul><li><code>M</code> is a monadic type;</li></ul>
+<ul><li><code>x&nbsp;:: a</code> is some other Haskell value;</li></ul>
+<ul><li><code>m&nbsp;:: M a</code> is an action;</li></ul>
+<ul><li><code>k&nbsp;:: (a -&gt; M b)</code> is a reaction;</li></ul>
+<ul><li><code>M</code>, <code>x</code>, <code>m</code>, <code>k</code> are <i>well-behaved</i>;</li></ul>
+<p>then:
+</p>
+<table>
+<tbody><tr>
+<td>(a)
+</td>
+<td><code>r1 = k $ x</code>
+</td>
+<td><code>&nbsp;:: M b</code>
+</td>
+<td>(<i>a new action</i>)
+</td></tr>
+<tr>
+<td>(b)
+</td>
+<td><code>r2 = return x</code>
+</td>
+<td><code>&nbsp;:: M a</code>
+</td>
+<td>(<i>an action whose output value is</i> <code>x</code>)
+</td></tr>
+<tr>
+<td>(c)
+</td>
+<td><code>r3 = m &gt;&gt;= k</code>
+</td>
+<td><code>&nbsp;:: M b</code>
+</td>
+<td>(<i>another new action</i>)
+</td></tr>
+<tr>
+<td>(d)
+</td>
+<td><code>r4 = k =&lt;&lt; m</code>
+</td>
+<td><code>&nbsp;:: M b</code>
+</td>
+<td>(<i>the same as</i> <code>r3</code>)
+</td></tr>
+<tr>
+<td>(e)
+</td>
+<td><code>r5 = k $ m</code>
+</td>
+<td><b>(<i>types don't match</i>)</b>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>(f)
+</td>
+<td><code>r6 = k &lt;$&gt; m</code>
+</td>
+<td><code>&nbsp;:: M (M b)</code>
+</td>
+<td>(<i>an action whose output value is also the same as</i> <code>r3</code>)
+</td></tr>
+<tr>
+<td>(g)
+</td>
+<td><code>r7 = join (k &lt;$&gt; m)</code>
+</td>
+<td><code>&nbsp;:: M b</code>
+</td>
+<td>(<i>the same as</i> <code>r3</code>)
+</td></tr></tbody></table>
+<p>where:
+</p>
+<haskell><div class="mw-highlight mw-highlight-lang-haskell mw-content-ltr" dir="ltr"><pre><span></span><span class="kr">infixr</span> <span class="mi">0</span> <span class="o">$</span>
+<span class="p">(</span><span class="o">$</span><span class="p">)</span>     <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span>
+<span class="nf">f</span> <span class="o">$</span> <span class="n">x</span>   <span class="ow">=</span>  <span class="n">f</span> <span class="n">x</span>
+
+<span class="kr">infixr</span> <span class="mi">1</span> <span class="o">=&lt;&lt;</span>
+<span class="p">(</span><span class="o">=&lt;&lt;</span><span class="p">)</span>   <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">M</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">M</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">M</span> <span class="n">b</span>
+<span class="nf">k</span> <span class="o">=&lt;&lt;</span> <span class="n">m</span> <span class="ow">=</span>  <span class="n">m</span> <span class="o">&gt;&gt;=</span> <span class="n">k</span>
+
+<span class="kr">infixl</span> <span class="mi">4</span> <span class="o">&lt;$&gt;</span>
+<span class="p">(</span><span class="o">&lt;$&gt;</span><span class="p">)</span>   <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">M</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">M</span> <span class="n">b</span>
+<span class="nf">f</span> <span class="o">&lt;$&gt;</span> <span class="n">m</span> <span class="ow">=</span>  <span class="n">m</span> <span class="o">&gt;&gt;=</span> <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">return</span> <span class="p">(</span><span class="n">f</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="nf">join</span>    <span class="ow">::</span> <span class="kt">M</span> <span class="p">(</span><span class="kt">M</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">M</span> <span class="n">a</span>
+<span class="nf">join</span> <span class="n">m</span>  <span class="ow">=</span>  <span class="n">m</span> <span class="o">&gt;&gt;=</span> <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">x</span>
+</pre></div>
+<p>Even though it is a purely-functional language, Haskell can facilitate the use of effect-based computations by presenting them as monadic actions (using a suitable type), with the monadic interface helping to maintain purity. This is the result of the aformentioned separation of concerns, most notably the <i>time of composition</i>. Monadic actions thus resemble programs in a particular <a href="https://wiki.haskell.org/EDSL" class="mw-redirect" title="EDSL">EDSL</a> (<i>embedded</i> domain-specific language), "embedded" because they are legitimate Haskell values which <i>describe</i> impure computations - no extraneous annotations are needed. This is how monadic types in Haskell help keep the <i>pure</i> and the <i>impure</i> apart. But not all monadic actions are impure - for them, the benefits of separating concerns are often combined with the automatic formation of a computational "pipeline".
+</p><p>Because they are very useful in practice but rather confronting for beginners, numerous <a href="https://wiki.haskell.org/Monad_tutorials_timeline" title="Monad tutorials timeline">monad tutorials</a> (including this one) exist to help with the learning process.
+</p>
+<h2><span id="Supplemental_operations_for_monadic_types_(non-standard_morphisms)"></span><span class="mw-headline" id="Supplemental_operations_for_monadic_types_.28non-standard_morphisms.29">Supplemental operations for monadic types (<i>non-standard morphisms</i>)</span></h2>
+<p>In addition to the two basic ones required by the monadic interface, each monadic type can have its own specific operations e.g. to provide access to and/or enable manipulation of data it implicitly carries which is specific to its nature; cause some specific side-effects; etc. 
+</p>
+<h3><span class="mw-headline" id="Running_monadic_actions">Running monadic actions</span></h3>
+<p>Some monadic types provide an extra operation for <i>running</i> actions, usually if they are <i>purely</i> defined by the type. This allows an action's output value to be obtained directly in Haskell, in contrast to <code>(&gt;&gt;=)</code>. While some of the predefined (e.g. from the <code>Prelude</code>) monadic types in Haskell have such an operation (e.g. <code>Prelude.maybe</code> or <code>Prelude.either</code>), most do not.
+</p><p>Why this is expressly  <i><b>not</b></i> a part of the monadic interface by now should be obvious - impure monadic actions could then be "hidden" inside seemingly-pure definitions, which would end any notion of purity in Haskell. This is why the only general-purpose way to use a monadic action's output value is to direct it to subsequent computations via the reaction which constructs them, through the use of <code>(&gt;&gt;=)</code>.
+</p></haskell></haskell>
+<!-- 
+NewPP limit report
+Cached time: 20231014012329
+Cache expiry: 86400
+Dynamic content: false
+Complications: []
+CPU time usage: 0.007 seconds
+Real time usage: 0.007 seconds
+Preprocessor visited node count: 38/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 1/20
+Unstrip post‐expand size: 3327/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key wikidb_haskell:pcache:idhash:10540-0!canonical and timestamp 20231014012329 and revision id 64044
+ -->
+</div></div><div class="printfooter">Retrieved from "<a dir="ltr" href="https://wiki.haskell.org/index.php?title=Merely_monadic&amp;oldid=64044">https://wiki.haskell.org/index.php?title=Merely_monadic&amp;oldid=64044</a>"</div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="https://wiki.haskell.org/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="https://wiki.haskell.org/Category:Monad" title="Category:Monad">Monad</a></li><li><a href="https://wiki.haskell.org/Category:Tutorials" title="Category:Tutorials">Tutorials</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-personal" class="vector-menu" aria-labelledby="p-personal-label" role="navigation">
+	<h3 id="p-personal-label">
+		<span>Personal tools</span>
+	</h3>
+	<!-- Please do not use the .body class, it is deprecated. -->
+	<div class="body vector-menu-content">
+		<!-- Please do not use the .menu class, it is deprecated. -->
+		<ul class="vector-menu-content-list"><li id="pt-login"><a href="https://wiki.haskell.org/index.php?title=Special:UserLogin&amp;returnto=Merely+monadic" title="You are encouraged to log in; however, it is not mandatory [alt-shift-o]" accesskey="o">Log in</a></li></ul>
+		
+	</div>
+</nav>
+
+
+		<div id="left-navigation">
+			<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-namespaces" class="vector-menu vector-menu-tabs vectorTabs" aria-labelledby="p-namespaces-label" role="navigation">
+	<h3 id="p-namespaces-label">
+		<span>Namespaces</span>
+	</h3>
+	<!-- Please do not use the .body class, it is deprecated. -->
+	<div class="body vector-menu-content">
+		<!-- Please do not use the .menu class, it is deprecated. -->
+		<ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected"><a href="https://wiki.haskell.org/Merely_monadic" title="View the content page [alt-shift-c]" accesskey="c">Page</a></li><li id="ca-talk" class="new"><a href="https://wiki.haskell.org/index.php?title=Talk:Merely_monadic&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [alt-shift-t]" accesskey="t">Discussion</a></li></ul>
+		
+	</div>
+</nav>
+
+
+			<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-variants" class="vector-menu-empty emptyPortlet vector-menu vector-menu-dropdown vectorMenu" aria-labelledby="p-variants-label" role="navigation">
+	<input type="checkbox" class="vector-menu-checkbox vectorMenuCheckbox" aria-labelledby="p-variants-label">
+	<h3 id="p-variants-label">
+		<span>Variants</span>
+	</h3>
+	<!-- Please do not use the .body class, it is deprecated. -->
+	<div class="body vector-menu-content">
+		<!-- Please do not use the .menu class, it is deprecated. -->
+		<ul class="menu vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+
+		</div>
+		<div id="right-navigation">
+			<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-views" class="vector-menu vector-menu-tabs vectorTabs" aria-labelledby="p-views-label" role="navigation">
+	<h3 id="p-views-label">
+		<span>Views</span>
+	</h3>
+	<!-- Please do not use the .body class, it is deprecated. -->
+	<div class="body vector-menu-content">
+		<!-- Please do not use the .menu class, it is deprecated. -->
+		<ul class="vector-menu-content-list"><li id="ca-view" class="collapsible selected"><a href="https://wiki.haskell.org/Merely_monadic">Read</a></li><li id="ca-viewsource" class="collapsible"><a href="https://wiki.haskell.org/index.php?title=Merely_monadic&amp;action=edit" title="This page is protected.
+You can view its source [alt-shift-e]" accesskey="e">View source</a></li><li id="ca-history" class="collapsible"><a href="https://wiki.haskell.org/index.php?title=Merely_monadic&amp;action=history" title="Past revisions of this page [alt-shift-h]" accesskey="h">View history</a></li></ul>
+		
+	</div>
+</nav>
+
+
+			<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-cactions" class="vector-menu-empty emptyPortlet vector-menu vector-menu-dropdown vectorMenu" aria-labelledby="p-cactions-label" role="navigation">
+	<input type="checkbox" class="vector-menu-checkbox vectorMenuCheckbox" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label">
+		<span>More</span>
+	</h3>
+	<!-- Please do not use the .body class, it is deprecated. -->
+	<div class="body vector-menu-content">
+		<!-- Please do not use the .menu class, it is deprecated. -->
+		<ul class="menu vector-menu-content-list"></ul>
+		
+	</div>
+</nav>
+
+
+			<div id="p-search" role="search">
+	<h3>
+		<label for="searchInput">Search</label>
+	</h3>
+	<form action="https://wiki.haskell.org/index.php" id="searchform">
+		<div id="simpleSearch">
+			<input type="search" name="search" placeholder="Search HaskellWiki" title="Search HaskellWiki [alt-shift-f]" accesskey="f" id="searchInput">
+			<input type="hidden" name="title" value="Special:Search">
+			<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton">
+			<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel">
+	<div id="p-logo" role="banner">
+		<a title="Visit the main page" class="mw-wiki-logo" href="https://wiki.haskell.org/Haskell"></a>
+	</div>
+	<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-navigation" class="vector-menu vector-menu-portal portal portal-first" aria-labelledby="p-navigation-label" role="navigation">
+	<h3 id="p-navigation-label">
+		<span>Navigation</span>
+	</h3>
+	<!-- Please do not use the .body class, it is deprecated. -->
+	<div class="body vector-menu-content">
+		<!-- Please do not use the .menu class, it is deprecated. -->
+		<ul class="vector-menu-content-list"><li id="n-mainpage"><a href="https://wiki.haskell.org/Haskell" title="Visit the main page [alt-shift-z]" accesskey="z">Haskell</a></li><li id="n-portal"><a href="https://wiki.haskell.org/HaskellWiki:Community" title="About the project, what you can do, where to find things">Wiki community</a></li><li id="n-recentchanges"><a href="https://wiki.haskell.org/Special:RecentChanges" title="A list of recent changes in the wiki [alt-shift-r]" accesskey="r">Recent changes</a></li><li id="n-randompage"><a href="https://wiki.haskell.org/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li></ul>
+		
+	</div>
+</nav>
+
+
+	<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+<nav id="p-tb" class="vector-menu vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation">
+	<h3 id="p-tb-label">
+		<span>Tools</span>
+	</h3>
+	<!-- Please do not use the .body class, it is deprecated. -->
+	<div class="body vector-menu-content">
+		<!-- Please do not use the .menu class, it is deprecated. -->
+		<ul class="vector-menu-content-list"><li id="t-whatlinkshere"><a href="https://wiki.haskell.org/Special:WhatLinksHere/Merely_monadic" title="A list of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked"><a href="https://wiki.haskell.org/Special:RecentChangesLinked/Merely_monadic" rel="nofollow" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li><li id="t-specialpages"><a href="https://wiki.haskell.org/Special:SpecialPages" title="A list of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li><li id="t-print"><a href="javascript:print();" rel="alternate" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li><li id="t-permalink"><a href="https://wiki.haskell.org/index.php?title=Merely_monadic&amp;oldid=64044" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-info"><a href="https://wiki.haskell.org/index.php?title=Merely_monadic&amp;action=info" title="More information about this page">Page information</a></li><li id="t-cite"><a href="https://wiki.haskell.org/index.php?title=Special:CiteThisPage&amp;page=Merely_monadic&amp;id=64044&amp;wpFormIdentifier=titleform" title="Information on how to cite this page">Cite this page</a></li></ul>
+		
+	</div>
+</nav>
+
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" role="contentinfo">
+	<ul id="footer-info">
+		<li id="footer-info-lastmod"> This page was last edited on 16 March 2021, at 04:35.</li>
+		<li id="footer-info-copyright">Recent content is available under <a href="https://wiki.haskell.org/HaskellWiki:Copyrights" title="HaskellWiki:Copyrights">simple permissive license</a>.</li>
+	</ul>
+	<ul id="footer-places">
+		<li id="footer-places-privacy"><a href="https://wiki.haskell.org/HaskellWiki:Privacy_policy" title="HaskellWiki:Privacy policy">Privacy policy</a></li>
+		<li id="footer-places-about"><a href="https://wiki.haskell.org/HaskellWiki:About" title="HaskellWiki:About">About HaskellWiki</a></li>
+		<li id="footer-places-disclaimer"><a href="https://wiki.haskell.org/HaskellWiki:General_disclaimer" title="HaskellWiki:General disclaimer">Disclaimers</a></li>
+	</ul>
+	<ul id="footer-icons" class="noprint">
+		<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/"><img src="./Merely monadic - HaskellWiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"></a></li>
+	</ul>
+	<div style="clear: both;"></div>
+</footer>
+
+
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgPageParseReport":{"limitreport":{"cputime":"0.007","walltime":"0.007","ppvisitednodes":{"value":38,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":3,"limit":40},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":1,"limit":20},"unstrip-size":{"value":3327,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20231014012329","ttl":86400,"transientcontent":false}}});mw.config.set({"wgBackendResponseTime":59});});</script>
+</body></html>

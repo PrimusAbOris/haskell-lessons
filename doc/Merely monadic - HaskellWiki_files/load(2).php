@@ -1,0 +1,1 @@
+table.wikitable{margin:1em 1em 1em 0;background:#f9f9f9;border:1px #aaaaaa solid;border-collapse:collapse}table.wikitable th,table.wikitable td{border:1px #aaaaaa solid;padding:0.2em}table.wikitable th{background:#f2f2f2;text-align:center}table.wikitable caption{margin-left:inherit;margin-right:inherit}pre.haskell{margin-left:2em}
