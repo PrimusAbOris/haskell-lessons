@@ -1,5 +1,6 @@
 import System.IO
 import Data.Time
+import System.Console.ANSI
 
 main :: IO ()
 main = do
@@ -18,6 +19,7 @@ main = do
         "3" -> processOption ("N " ++ formattedDate ++ ".txt")
         _   -> putStrLn "Invalid option." --test with and without
 
+    clearScreen
     putStrLn "It begins! Enter a line of text (type 'done' to quit):"
     appendLineToFile ("D " ++ formattedDate ++ ".txt") --account for all three
     where
